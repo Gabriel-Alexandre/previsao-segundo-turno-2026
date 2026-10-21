@@ -134,6 +134,8 @@ def notas(erros: pd.DataFrame, antes_de: int) -> pd.DataFrame:
 def estimativa_P(pesq: pd.DataFrame, nt: pd.DataFrame, corrigir_vies: bool = True, pesar: bool = True) -> tuple[float, pd.DataFrame]:
     """pesq: instituto, anti_valido (ja uma por instituto). nt: saida de notas()."""
     d = pesq.merge(nt, on="instituto", how="left")
+    for c in ("nota", "vies_2t", "n_2t", "n_rodadas"):
+        d[c] = pd.to_numeric(d[c], errors="coerce")
     p75 = nt.nota.quantile(0.75) if len(nt) else np.nan
     d["tem_historico"] = d.nota.notna()
     d["nota_usada"] = d.nota.fillna(p75)

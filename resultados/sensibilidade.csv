@@ -1,0 +1,19 @@
+variante,flavio,lula,diferenca_para_o_principal
+principal (60/25/15),50.516,49.484,0.0
+só pesquisas (P),50.413,49.587,-0.104
+pesos 50/30/20,50.546,49.454,0.029
+pesos iguais,50.607,49.393,0.091
+outros 40% para Flávio e 60% para Lula,50.399,49.601,-0.117
+outros 45% para Flávio e 55% para Lula,50.458,49.542,-0.059
+outros 55% para Flávio e 45% para Lula,50.575,49.425,0.059
+outros 60% para Flávio e 40% para Lula,50.634,49.366,0.117
+outros divididos como em 2022 (estimativa por município),50.499,49.501,-0.017
+H só com 2022,50.453,49.547,-0.064
+P sem correção de viés,50.551,49.449,0.034
+P sem peso por acerto,50.831,49.169,0.314
+P média simples (sem peso e sem correção),50.893,49.107,0.376
+P com todas as pesquisas da janela (média simples),50.88,49.12,0.363
+R sem fator de comparecimento por UF,50.531,49.469,0.015
+nota de acerto encolhida pelo número de eleições,50.783,49.217,0.267
+P menos o erro médio das pesquisas a 4-13 dias (2014-2022),49.469,50.531,-1.048
+P corrigido pelo erro de cada instituto no 1º turno de 2026,51.113,48.887,0.597

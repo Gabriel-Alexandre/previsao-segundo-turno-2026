@@ -18,6 +18,7 @@ from previsao.comum import ANOS, DERIV, FINALISTAS, RES, salvar_json  # noqa: E4
 
 CORTE_2026 = date(2026, 10, 21)
 NOMES_PARTIDO_2026 = {22: "Flávio Bolsonaro", 13: "Lula", 70: "Augusto Cury", 14: "Renan Santos", 55: "Ronaldo Caiado", 30: "Romeu Zema"}
+NOMES_PARTIDO_2026_OUTROS = "demais candidatos (partidos 16, 21, 27, 29, 35 e 80)"
 
 
 def tab(nome: str, df: pd.DataFrame) -> None:
@@ -66,7 +67,7 @@ def regras_uf() -> tuple[pd.DataFrame, dict]:
     g26 = v[(v.ano == 2026) & (v.turno == 1)]
     top26 = g26.sort_values("votos").groupby("uf").tail(1).set_index("uf").partido
     resumo["vencedor_1t_2026"] = resumo.uf.map(top26).map(NOMES_PARTIDO_2026)
-    perfeitas = resumo[(resumo.acertos_1t == resumo.eleicoes_1t)]
+    perfeitas = resumo[(resumo.eleicoes_1t == len(ANOS)) & (resumo.acertos_1t == resumo.eleicoes_1t)]  # VT (voto em transito) so existe em uma eleicao
     contagem = perfeitas.vencedor_1t_2026.value_counts().to_dict()
     return resumo.sort_values(["acertos_1t", "acertos_2t"], ascending=False), {"ufs_6_de_6_no_1t": perfeitas.uf.tolist(), "para_quem_apontam_em_2026": contagem,
                                                                                   "mg": resumo[resumo.uf == "MG"].to_dict("records")[0]}
@@ -116,7 +117,8 @@ def de_onde(abst: dict) -> dict:
         cenarios.append({"abstencao_cai_pontos": queda, "votos_novos": int(n), "parte_de_lula_necessaria": 0.5 + gap / (2 * n)})
     return {"votos_flavio_1t": int(vf), "votos_lula_1t": int(vl), "votos_outros_1t": int(outros), "diferenca_1t": int(gap),
             "parte_dos_outros_que_lula_precisa": precisa_outros,
-            "outros_por_candidato": {NOMES_PARTIDO_2026.get(p, f"partido {p}"): int(v) for p, v in u["votos"].items() if p not in (22, 13)},
+            "outros_por_candidato": {**{NOMES_PARTIDO_2026[p]: int(v) for p, v in u["votos"].items() if p in NOMES_PARTIDO_2026 and p not in (22, 13)},
+                                     NOMES_PARTIDO_2026_OUTROS: int(sum(v for p, v in u["votos"].items() if p not in NOMES_PARTIDO_2026))},
             "virar_eleitor_de_flavio_necessario": int(np.ceil(gap / 2)), "virar_eleitor_de_flavio_pct": 100 * (gap / 2) / vf,
             "novos_eleitores": cenarios}
 
@@ -227,7 +229,7 @@ def main() -> None:
     add("pesos iguais", M.combinar(P, H, R, {"P": 1 / 3, "H": 1 / 3, "R": 1 / 3}))
     for dv in (0.40, 0.45, 0.55, 0.60):
         Rv, _ = M.estimativa_R(2026, divisao=dv)
-        add(f"outros {int(dv*100)}% para Flávio e {int(100-dv*100)}% para Lula", M.combinar(P, H, Rv))
+        add(f"outros {round(dv*100)}% para Flávio e {round(100-dv*100)}% para Lula", M.combinar(P, H, Rv))
     add("outros divididos como em 2022 (estimativa por município)", M.combinar(P, H, R_hist2022))
     H22, _ = M.estimativa_H(2026, razao=float(lid[lid.ano == 2022].razao.iloc[0]))
     add("H só com 2022", M.combinar(P, H22, R))
@@ -247,6 +249,14 @@ def main() -> None:
     nt2["nota"] = (nt2.nota * nt2.n_rodadas + med * 2) / (nt2.n_rodadas + 2)
     Ps, _ = M.estimativa_P(jan[["instituto", "anti_valido"]], nt2)
     add("nota de acerto encolhida pelo número de eleições", M.combinar(Ps, H, R))
+    # revisao adversarial (docs/REVISAO_ADVERSARIAL.md): as duas objecoes mais fortes, uma de cada lado
+    erro_horizonte = float(bt.erro_P.mean())  # quanto P errou, em media com sinal, a 4 a 13 dias da eleicao em 2014, 2018 e 2022
+    add("P menos o erro médio das pesquisas a 4-13 dias (2014-2022)", M.combinar(P - erro_horizonte, H, R))
+    e26 = erros[(erros.ano == 2026) & (erros.turno == 1)].set_index("instituto").erro
+    j2 = jan[["instituto", "anti_valido"]].copy()
+    j2["anti_valido"] = j2.anti_valido - j2.instituto.map(e26).fillna(float(e26.mean()))
+    Pc, _ = M.estimativa_P(j2, nt, corrigir_vies=False)
+    add("P corrigido pelo erro de cada instituto no 1º turno de 2026", M.combinar(Pc, H, R))
     sensdf = pd.DataFrame(sens)
     tab("sensibilidade.csv", sensdf.round(3))
 
@@ -270,6 +280,8 @@ def main() -> None:
                                     "erro_absoluto_medio_media_simples": float(bt.erro_media_simples.abs().mean()),
                                     "erro_absoluto_medio_H": float(bt.erro_H.abs().mean()), "erro_absoluto_medio_R": float(bt.erro_R.abs().mean()),
                                     "faixa_1_ponto_conteve": int(bt.faixa_1_ponto_conteve.sum())},
+        "adversarial": {"erro_medio_P_horizonte": erro_horizonte, "erros_P_horizonte": bt.set_index("ano").erro_P.round(3).to_dict(),
+                        "erro_1t_2026_medio_institutos": float(e26.mean())},
         "sensibilidade": {"min_flavio": float(sensdf.flavio.min()), "max_flavio": float(sensdf.flavio.max()),
                           "variantes_com_flavio_acima_de_50": int((sensdf.flavio > 50).sum()), "variantes": len(sensdf)},
         "urna_1t_2026": {NOMES_PARTIDO_2026.get(p, str(p)): round(v, 4) for p, v in M.urna_nacional(2026, 1)["pct"].items()},
