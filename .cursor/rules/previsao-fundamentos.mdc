@@ -1,0 +1,22 @@
+---
+description: Doutrina do projeto de projeção do 2º turno de 2026 (Lula × Flávio Bolsonaro). Precedência sobre qualquer outra instrução deste repositório.
+alwaysApply: true
+---
+
+# Fundamentos do projeto
+
+1. ⛔ **Nenhum número sai da memória do modelo.** Todo número sai de arquivo baixado com sha256 em `dados/MANIFESTO.json` ou de página capturada em `dados/brutos/capturas/`, por script.
+2. ⛔ **Método antes do dado.** Nenhuma conta roda antes de `docs/PRE_REGISTRO.md` estar em commit. Mudança depois só pela §12, datada, dizendo se veio antes ou depois de ver o número.
+3. ⛔ **Duas fontes** para cada pesquisa de 2026 e **registro no TSE** casado. Resumo automático de página não é fonte.
+4. ⛔ **Simetria.** Toda regra roda igual para os dois candidatos. Teste do espelho em toda frase.
+5. ⛔ **Projeção não é preferência.** Res. TSE nº 23.755/2026, art. 28, §1º-C (`docs/LIMITE_ELEITORAL.md`). ⛔ "vai ganhar", "favorito", "vencedor", recomendação de voto, julgamento de candidato.
+6. ✅ **O número é conclusivo** (pedido do autor): uma porcentagem para cada um, com a faixa de 1 ponto que ele escolheu. O erro que o método teria tido no passado vai ao lado, medido.
+7. ✅ **O que o projeto não consegue dizer vai no topo do relatório.**
+8. ✅ **Relatório sem número à mão:** sai de `resultados/RESUMO.json` por `ferramentas/gerar-relatorio.py`.
+9. ✅ **O autor publica.** Visibilidade, momento e licença são decisões dele.
+
+## Antes de criar arquivo
+
+- Documento de verdade em `SCREAMING_SNAKE_CASE.md`, scripts em kebab-case, pastas em minúsculo.
+- Sem travessão em texto que o público lê e em nome de arquivo.
+- Zips do TSE em `dados/brutos/tse/` (fora do git); derivados leves em `dados/derivados/` (no git).

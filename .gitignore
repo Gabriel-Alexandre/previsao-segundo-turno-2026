@@ -1,0 +1,6 @@
+dados/brutos/tse/
+dados/brutos/*.zip
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
