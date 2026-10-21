@@ -158,7 +158,7 @@ def g07_de_onde(r: dict, tr: pd.DataFrame) -> None:
     fig.subplots_adjust(left=0.2)
     ax.set_xlabel("parte dos votos dos outros candidatos (Cury, Renan, Caiado, Zema e demais) que iria para Lula")
     txt = "No passado, o candidato do PT ficou com " + ", ".join(f"{br(100 * x, 0)}% ({a})" for a, x in zip(tr.ano, tr.parte_pt_entre_os_que_votaram)) + \
-          "\ndos outros; mas os outros eram de centro e de esquerda (Ciro, Marina, Tebet, Garotinho). Em 2026 os três maiores se apresentam à direita."
+          "\ndos outros; mas os outros eram de centro e de esquerda (Ciro, Marina, Tebet, Garotinho). Em 2026, na leitura do autor, eles ficam mais à direita."
     fig.text(0.08, 0.045, txt, fontsize=14, color="#333333")
     salvar(fig, "g07_de_onde_viriam_os_votos.png")
 
@@ -210,6 +210,44 @@ def g10_ufs(reg: pd.DataFrame) -> None:
     salvar(fig, "g10_estados_que_acertam.png")
 
 
+def g11_emenda(r: dict, se: pd.DataFrame) -> None:
+    pre = se.set_index("variante").flavio["como no pré-registro, antes da emenda 2 (Vox Brasil com 25% do peso)"]
+    fig, ax = nova("Um acerto só não é histórico: o peso da Vox Brasil", "resultados/sensibilidade.csv e p_pesquisas_usadas.csv")
+    ax.axis("off")
+    p = pd.read_csv(RES / "p_pesquisas_usadas.csv").set_index("instituto")
+    blocos = [("Peso da Vox Brasil", "25%", f"{br(100 * p.loc['Vox Brasil', 'peso'], 1)}%"), ("Flávio no número final", f"{br(pre, 1)}%", f"{br(r['final']['flavio'], 1)}%")]
+    for i, (rot, antes, depois) in enumerate(blocos):
+        x = 0.06 + i * 0.48
+        ax.text(x, 0.80, rot, fontsize=26, fontweight="bold", transform=ax.transAxes)
+        ax.text(x, 0.52, antes, fontsize=64, color=COR["claro"], transform=ax.transAxes)
+        ax.text(x + 0.20, 0.55, "→", fontsize=50, transform=ax.transAxes)
+        ax.text(x + 0.26, 0.52, depois, fontsize=64, fontweight="bold", color=COR["flavio"] if i else "black", transform=ax.transAxes)
+        ax.text(x, 0.42, "antes", fontsize=16, color="#555555", transform=ax.transAxes)
+        ax.text(x + 0.26, 0.42, "depois da regra", fontsize=16, color="#555555", transform=ax.transAxes)
+    fig.text(0.08, 0.2, "A regra vale pra todo instituto com um turno só de histórico: Vox Brasil, Palver, Gerp e Indexa.\n"
+             "Decisão do autor depois de ver o 1º número (emenda 2, publicada no repositório).", fontsize=18)
+    salvar(fig, "g11_um_acerto_nao_e_historico.png")
+
+
+def g12_placar(r: dict) -> None:
+    e, hh = r["estimativas"], r["H"]
+    fig, ax = nova("O resultado de cada parte, na ordem do peso", "resultados/RESUMO.json")
+    ax.axis("off")
+    linhas = [("Pesquisas", "60%", f"Flávio {br(e['P'], 1)}%", f"{r['P']['institutos_com_flavio_na_frente']} de {r['P']['institutos']} institutos com Flávio na frente"),
+              ("Histórico", "25%", f"Flávio {br(e['H'], 1)}%", f"líder do 1º turno venceu {hh['lider_1t_venceu']}; os estados que acertam empatam, 2 a 2"),
+              ("Crescimento", "15%", f"Flávio {br(e['R'], 1)}%", f"Lula precisaria de {br(100 * r['de_onde']['parte_dos_outros_que_lula_precisa'], 0)}% dos outros"),
+              ("Abstenção", "fora da conta", "sem reserva", f"no 2º turno ela subiu em 5 de 6 eleições")]
+    for i, (a, b, c, d) in enumerate(linhas):
+        y = 0.82 - i * 0.17
+        ax.text(0.02, y, a, fontsize=28, fontweight="bold", transform=ax.transAxes)
+        ax.text(0.22, y, b, fontsize=20, color="#555555", transform=ax.transAxes)
+        ax.text(0.38, y, c, fontsize=28, fontweight="bold", color=COR["flavio"] if c.startswith("Flávio") else "black", transform=ax.transAxes)
+        ax.text(0.38, y - 0.06, d, fontsize=15, color="#333333", transform=ax.transAxes)
+    ax.text(0.02, 0.08, f"Número final:  Flávio {r['final']['flavio_inteiro']}%  ·  Lula {r['final']['lula_inteiro']}%", fontsize=36, fontweight="bold", transform=ax.transAxes)
+    ax.text(0.70, 0.085, f"({br(r['final']['flavio'])}% e {br(r['final']['lula'])}% com uma casa)", fontsize=16, color="#555555", transform=ax.transAxes)
+    salvar(fig, "g12_placar_por_parte.png")
+
+
 def main() -> None:
     r = json.loads((RES / "RESUMO.json").read_text(encoding="utf-8"))
     p = pd.read_csv(RES / "p_pesquisas_usadas.csv")
@@ -223,6 +261,8 @@ def main() -> None:
     g08_teste(pd.read_csv(RES / "teste_do_passado.csv"))
     g09_sensibilidade(pd.read_csv(RES / "sensibilidade.csv"), r)
     g10_ufs(pd.read_csv(RES / "h_regras_por_uf.csv"))
+    g11_emenda(r, pd.read_csv(RES / "sensibilidade.csv"))
+    g12_placar(r)
     print(sorted(x.name for x in FIG.glob("*.png")))
 
 

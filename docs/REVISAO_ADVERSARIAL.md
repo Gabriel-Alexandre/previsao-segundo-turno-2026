@@ -17,7 +17,7 @@ Três leitores, cada um procurando o defeito que mais o incomodaria. O que cada 
 |---|---|---|
 | A Vox Brasil, única com Lula na frente, ganhou 25% do peso com uma eleição só | verdade, pela regra do §4.7 | corrigido pela **emenda 2**, decisão do autor depois de ver o número: de 50,52% para 50,85% |
 | No 1º turno de 2026 os institutos mostraram Flávio menor que a urna | erro médio de -1,90 ponto na escala da parte | corrigindo cada instituto por isso: **51,88%**; é a variante mais forte a favor de Flávio |
-| O 50% e 50% é generoso com Lula, já que os outros se apresentam à direita | é o parâmetro do autor, para ser conservador | com 60% para Flávio: 50,97% |
+| O 50% e 50% é generoso com Lula, se esses votos forem mais de direita, como o autor lê | é o parâmetro do autor, para ser conservador | com 60% para Flávio: 50,97% |
 
 ## 3. O auditor de método e linguagem
 

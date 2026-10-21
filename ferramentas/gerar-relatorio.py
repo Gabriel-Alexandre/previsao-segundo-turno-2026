@@ -156,7 +156,7 @@ Minas Gerais, a regra mais citada, acertou as 6 nos dois turnos e deu **Flávio*
 
 No 1º turno, Flávio teve {n(D['votos_flavio_1t'])} votos, Lula {n(D['votos_lula_1t'])} e os outros {n(D['votos_outros_1t'])}: {outros_txt}. A diferença foi de **{n(D['diferenca_1t'])} votos**.
 
-Com os outros divididos **50% e 50%** (parâmetro do autor, para não puxar para Flávio, já que os três maiores se apresentam à direita), a diferença em votos continua a mesma ({b(D['diferenca_1t']/1e6, 1)} milhões), só que sobre uma base maior, e a parte de Flávio cai de {b(100*D['votos_flavio_1t']/(D['votos_flavio_1t']+D['votos_lula_1t']), 2)}% (só os dois) para {b(r['R']['R_sem_fator'], 2)}%. O fator de comparecimento por UF quase não muda a conta (sem ele, {b(r['R']['R_sem_fator'], 2)}%).
+Com os outros divididos **50% e 50%** (parâmetro do autor, que lê a maior parte desses candidatos como mais à direita e não quis puxar a conta para Flávio), a diferença em votos continua a mesma ({b(D['diferenca_1t']/1e6, 1)} milhões), só que sobre uma base maior, e a parte de Flávio cai de {b(100*D['votos_flavio_1t']/(D['votos_flavio_1t']+D['votos_lula_1t']), 2)}% (só os dois) para {b(r['R']['R_sem_fator'], 2)}%. O fator de comparecimento por UF quase não muda a conta (sem ele, {b(r['R']['R_sem_fator'], 2)}%).
 
 **De onde Lula precisaria tirar a diferença, cada fonte sozinha:**
 
@@ -174,7 +174,7 @@ Com os outros divididos **50% e 50%** (parâmetro do autor, para não puxar para
 
 {tab_tr}
 
-O candidato do PT ficou com metade ou mais dos outros em quase todas as eleições, mas **os outros eram de centro e de esquerda** (Garotinho, Ciro, Marina, Heloísa Helena, Tebet). Não existe eleição passada em que os maiores outros se apresentassem à direita, como em 2026; por isso o 50% e 50% é uma escolha, não uma medida. Com a divisão estimada para 2022 ({b(100*tr22.parte_pt_entre_os_que_votaram, 0)}% para o PT), o número final fica em {b(var['outros divididos como em 2022 (estimativa por município)'], 2)}%.
+O candidato do PT ficou com metade ou mais dos outros em quase todas as eleições, mas **os outros eram, na maior parte, de centro e de esquerda** (Garotinho, Ciro, Marina, Heloísa Helena, Tebet). Não existe eleição passada em que os maiores outros fossem lidos como de direita, como o autor lê os de 2026; por isso o 50% e 50% é uma escolha, não uma medida. Com a divisão estimada para 2022 ({b(100*tr22.parte_pt_entre_os_que_votaram, 0)}% para o PT), o número final fica em {b(var['outros divididos como em 2022 (estimativa por município)'], 2)}%.
 
 ## 5. Teste do passado
 
@@ -259,7 +259,7 @@ Três leitores, cada um procurando o defeito que mais o incomodaria. O que cada 
 |---|---|---|
 | A Vox Brasil, única com Lula na frente, ganhou 25% do peso com uma eleição só | verdade, pela regra do §4.7 | corrigido pela **emenda 2**, decisão do autor depois de ver o número: de {b(v_pre, 2)}% para {b(f_raw, 2)}% |
 | No 1º turno de 2026 os institutos mostraram Flávio menor que a urna | erro médio de {b(ADV['erro_1t_2026_medio_institutos'], 2)} ponto na escala da parte | corrigindo cada instituto por isso: **{b(v_1t, 2)}%**; é a variante mais forte a favor de Flávio |
-| O 50% e 50% é generoso com Lula, já que os outros se apresentam à direita | é o parâmetro do autor, para ser conservador | com 60% para Flávio: {b(var['outros 60% para Flávio e 40% para Lula'], 2)}% |
+| O 50% e 50% é generoso com Lula, se esses votos forem mais de direita, como o autor lê | é o parâmetro do autor, para ser conservador | com 60% para Flávio: {b(var['outros 60% para Flávio e 40% para Lula'], 2)}% |
 
 ## 3. O auditor de método e linguagem
 

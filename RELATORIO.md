@@ -109,7 +109,7 @@ Minas Gerais, a regra mais citada, acertou as 6 nos dois turnos e deu **Flávio*
 
 No 1º turno, Flávio teve 56.104.503 votos, Lula 53.879.538 e os outros 9.316.747: Renan Santos (2.675.887), Romeu Zema (326.488), Ronaldo Caiado (2.605.148), Augusto Cury (3.448.569), demais candidatos (partidos 16, 21, 27, 29, 35 e 80) (260.655). A diferença foi de **2.224.965 votos**.
 
-Com os outros divididos **50% e 50%** (parâmetro do autor, para não puxar para Flávio, já que os três maiores se apresentam à direita), a diferença em votos continua a mesma (2,2 milhões), só que sobre uma base maior, e a parte de Flávio cai de 51,01% (só os dois) para 50,93%. O fator de comparecimento por UF quase não muda a conta (sem ele, 50,93%).
+Com os outros divididos **50% e 50%** (parâmetro do autor, que lê a maior parte desses candidatos como mais à direita e não quis puxar a conta para Flávio), a diferença em votos continua a mesma (2,2 milhões), só que sobre uma base maior, e a parte de Flávio cai de 51,01% (só os dois) para 50,93%. O fator de comparecimento por UF quase não muda a conta (sem ele, 50,93%).
 
 **De onde Lula precisaria tirar a diferença, cada fonte sozinha:**
 
@@ -142,7 +142,7 @@ Com os outros divididos **50% e 50%** (parâmetro do autor, para não puxar para
 | 2018 | 24,7% | 80% |
 | 2022 | 8,4% | 51% |
 
-O candidato do PT ficou com metade ou mais dos outros em quase todas as eleições, mas **os outros eram de centro e de esquerda** (Garotinho, Ciro, Marina, Heloísa Helena, Tebet). Não existe eleição passada em que os maiores outros se apresentassem à direita, como em 2026; por isso o 50% e 50% é uma escolha, não uma medida. Com a divisão estimada para 2022 (51% para o PT), o número final fica em 50,83%.
+O candidato do PT ficou com metade ou mais dos outros em quase todas as eleições, mas **os outros eram, na maior parte, de centro e de esquerda** (Garotinho, Ciro, Marina, Heloísa Helena, Tebet). Não existe eleição passada em que os maiores outros fossem lidos como de direita, como o autor lê os de 2026; por isso o 50% e 50% é uma escolha, não uma medida. Com a divisão estimada para 2022 (51% para o PT), o número final fica em 50,83%.
 
 ## 5. Teste do passado
 
