@@ -24,5 +24,5 @@ Executado de ponta a ponta em 21/out/2026: pré-registro em commit antes de qual
 
 - **Depois de 25/out:** comparar a projeção com a urna (o arquivo do 2º turno sai no mesmo endereço do TSE) e registrar o erro numa seção nova do relatório, sem mudar o número publicado.
 - Pesquisas publicadas depois de 21/out **não** entram nesta projeção; rodar de novo com elas exigiria uma emenda datada.
-- **Chave do Google no alerta do GitHub (21/out):** era a chave pública que o UOL embute nas próprias páginas; veio junto com 3 matérias salvas como segunda fonte. Desde então o HTML bruto fica fora do git (`dados/brutos/html-pesquisas-2026/`) e só o texto extraído entra. A chave ainda está no histórico (commit `aac7619`); limpar o histórico exige reescrever e forçar o push, decisão do autor.
+- **Chave do Google no alerta do GitHub (21/out):** era a chave pública que o UOL embute nas próprias páginas; veio junto com 3 matérias salvas como segunda fonte. Desde então o HTML bruto fica fora do git (`dados/brutos/html-pesquisas-2026/`) e só o texto extraído entra. A chave ainda está no histórico (commit `aac7619`) e fica como está, por decisão do autor (21/out): é a chave pública que o UOL já expõe nas próprias páginas.
 - Os zips do TSE (~150 MB) ficam fora do git em `dados/brutos/tse/`; `python ferramentas/coletar.py` baixa de novo e o manifesto confere o hash.
