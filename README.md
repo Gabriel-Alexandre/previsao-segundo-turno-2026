@@ -6,8 +6,7 @@ Projeto aberto que crava uma porcentagem para cada candidato no 2º turno de 25/
 
 | | Flávio Bolsonaro | Lula |
 |---|---|---|
-| **Projeção (votos válidos)** | **51%** | **49%** |
-| Com uma casa | 50,8% | 49,2% |
+| **Projeção (votos válidos)** | **50,8%** | **49,2%** |
 | Faixa de 1 ponto (escolha do autor, não margem de erro) | 49,8% a 51,8% | 48,2% a 50,2% |
 
 Pela emenda 2 (decisão do autor depois de ver o primeiro número, 50,5 a 49,5), instituto com um turno só de histórico conta como sem histórico; a Vox Brasil, única pesquisa com Lula na frente, deixou de ter 25% do peso.

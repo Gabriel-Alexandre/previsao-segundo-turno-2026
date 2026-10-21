@@ -4,13 +4,13 @@
 
 ## Em uma frase
 
-Executado de ponta a ponta em 21/out/2026: pré-registro em commit antes de qualquer conta (`b30ae7f`), uma emenda antes do cálculo e outra depois (decisão do autor), coleta do TSE de 2002 a 2026 com hash, 27 pesquisas do 2º turno casadas com o registro no TSE (26 conferidas numa segunda fonte), as três estimativas, teste do passado, 19 variantes, recontagem independente (14 de 14), revisão adversarial, relatório e 10 gráficos. **Projeção: Flávio 51% e Lula 49% dos válidos (50,8% e 49,2% com uma casa), com 1 ponto para cada lado**, depois da emenda 2 (decisão do autor: instituto com um turno só de histórico conta como sem histórico; antes dela, 50,5% e 49,5%).
+Executado de ponta a ponta em 21/out/2026: pré-registro em commit antes de qualquer conta (`b30ae7f`), uma emenda antes do cálculo e duas depois (decisões do autor: o peso da Vox Brasil e o número com uma casa), coleta do TSE de 2002 a 2026 com hash, 27 pesquisas do 2º turno casadas com o registro no TSE (26 conferidas numa segunda fonte), as três estimativas, teste do passado, 19 variantes, recontagem independente (14 de 14), revisão adversarial, relatório e 10 gráficos. **Projeção: Flávio 50,8% e Lula 49,2% dos válidos, com 1 ponto para cada lado**, depois da emenda 2 (decisão do autor: instituto com um turno só de histórico conta como sem histórico; antes dela, 50,5% e 49,5%).
 
 ## O que está pronto
 
 | Peça | Estado |
 |---|---|
-| Pré-registro e emendas 1 e 2 | ✅ `docs/PRE_REGISTRO.md` |
+| Pré-registro e emendas 1 a 3 | ✅ `docs/PRE_REGISTRO.md` |
 | Coleta com sha256 | ✅ `dados/MANIFESTO.json` |
 | Pesquisas de 2026: registro no TSE e segunda fonte | ✅ `dados/derivados/pesquisas_2t_2026_*.csv` |
 | Análise (P, H, R, regras por UF, abstenção, de onde viriam os votos, teste do passado, sensibilidade) | ✅ `resultados/RESUMO.json` |

@@ -1,6 +1,6 @@
 # Resumo simples
 
-**A projeção do método para o 2º turno de 25/out/2026: Flávio Bolsonaro 51% e Lula 49% dos votos válidos, com 1 ponto para cada lado** (50,8% e 49,2% com uma casa).
+**A projeção do método para o 2º turno de 25/out/2026: Flávio Bolsonaro 50,8% e Lula 49,2% dos votos válidos, com 1 ponto para cada lado.**
 
 | O que entrou | Peso | O que deu para Flávio | Por quê |
 |---|---|---|---|

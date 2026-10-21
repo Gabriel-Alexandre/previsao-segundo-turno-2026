@@ -52,8 +52,8 @@ def g01_resultado(r: dict) -> None:
         ax.barh(y, v, height=0.5, color=cor)
         ax.errorbar(v, y, xerr=1, color="black", capsize=14, lw=2.5)
         ax.text(1.5, y, nome, va="center", color="white", fontsize=34, fontweight="bold")
-        ax.text(v + 1.8, y, f"{vi}%", va="center", fontsize=54, fontweight="bold", color=cor)
-        ax.text(v + 1.8, y - 0.36, f"{br(v)}% com uma casa\nfaixa: {br(v - 1)}% a {br(v + 1)}%", va="center", fontsize=17, color="#333333")
+        ax.text(v + 1.8, y, f"{br(v)}%", va="center", fontsize=54, fontweight="bold", color=cor)
+        ax.text(v + 1.8, y - 0.3, f"faixa: {br(v - 1)}% a {br(v + 1)}%", va="center", fontsize=17, color="#333333")
     ax.axvline(50, color="black", lw=1.5, ls="--")
     ax.text(50, 1.45, "50%", ha="center", fontsize=16)
     ax.set_xlim(0, 70)
@@ -243,8 +243,7 @@ def g12_placar(r: dict) -> None:
         ax.text(0.22, y, b, fontsize=20, color="#555555", transform=ax.transAxes)
         ax.text(0.38, y, c, fontsize=28, fontweight="bold", color=COR["flavio"] if c.startswith("Flávio") else "black", transform=ax.transAxes)
         ax.text(0.38, y - 0.06, d, fontsize=15, color="#333333", transform=ax.transAxes)
-    ax.text(0.02, 0.08, f"Número final:  Flávio {r['final']['flavio_inteiro']}%  ·  Lula {r['final']['lula_inteiro']}%", fontsize=36, fontweight="bold", transform=ax.transAxes)
-    ax.text(0.70, 0.085, f"({br(r['final']['flavio'])}% e {br(r['final']['lula'])}% com uma casa)", fontsize=16, color="#555555", transform=ax.transAxes)
+    ax.text(0.02, 0.08, f"Número final:  Flávio {br(r['final']['flavio'])}%  ·  Lula {br(r['final']['lula'])}%", fontsize=36, fontweight="bold", transform=ax.transAxes)
     salvar(fig, "g12_placar_por_parte.png")
 
 

@@ -13,11 +13,11 @@
 
 | | Flávio Bolsonaro | Lula |
 |---|---|---|
-| **Projeção, em número inteiro** | **51%** | **49%** |
-| Com uma casa | 50,8% | 49,2% |
+| **Projeção (votos válidos)** | **50,8%** | **49,2%** |
+| Em número inteiro | 51% | 49% |
 | Faixa de 1 ponto | 49,8% a 51,8% | 48,2% a 50,2% |
 
-Pela **emenda 2** (decisão do autor, depois de ver o número), instituto com um turno só de histórico conta como sem histórico; antes dela, o final era 50,52%. Nenhuma redução do peso da Vox Brasil, sozinha, chegaria a 51,0 com uma casa; em número inteiro, o resultado é 51 a 49.
+Pela **emenda 2** (decisão do autor, depois de ver o número), instituto com um turno só de histórico conta como sem histórico; antes dela, o final era 50,52%. Nenhuma redução do peso da Vox Brasil, sozinha, chegaria a 51,0 com uma casa. Pela emenda 3 (decisão dele), o número apresentado é o de uma casa, 50,8 a 49,2.
 
 | Estimativa | Parte de Flávio | Peso | Contribuição |
 |---|---|---|---|

@@ -113,11 +113,11 @@ RELATORIO = f"""# Relatório: projeção do 2º turno de 2026
 
 | | Flávio Bolsonaro | Lula |
 |---|---|---|
-| **Projeção, em número inteiro** | **{fi}%** | **{li}%** |
-| Com uma casa | {b(f)}% | {b(l)}% |
+| **Projeção (votos válidos)** | **{b(f)}%** | **{b(l)}%** |
+| Em número inteiro | {fi}% | {li}% |
 | Faixa de 1 ponto | {b(f-1)}% a {b(f+1)}% | {b(l-1)}% a {b(l+1)}% |
 
-Pela **emenda 2** (decisão do autor, depois de ver o número), instituto com um turno só de histórico conta como sem histórico; antes dela, o final era {b(v_pre, 2)}%. Nenhuma redução do peso da Vox Brasil, sozinha, chegaria a 51,0 com uma casa; em número inteiro, o resultado é {fi} a {li}.
+Pela **emenda 2** (decisão do autor, depois de ver o número), instituto com um turno só de histórico conta como sem histórico; antes dela, o final era {b(v_pre, 2)}%. Nenhuma redução do peso da Vox Brasil, sozinha, chegaria a 51,0 com uma casa. Pela emenda 3 (decisão dele), o número apresentado é o de uma casa, {b(f)} a {b(l)}.
 
 | Estimativa | Parte de Flávio | Peso | Contribuição |
 |---|---|---|---|
@@ -208,7 +208,7 @@ Análise feita pelo Claude, modelo de IA da Anthropic, com o método, os pesos e
 
 RESUMO = f"""# Resumo simples
 
-**A projeção do método para o 2º turno de 25/out/2026: Flávio Bolsonaro {fi}% e Lula {li}% dos votos válidos, com 1 ponto para cada lado** ({b(f)}% e {b(l)}% com uma casa).
+**A projeção do método para o 2º turno de 25/out/2026: Flávio Bolsonaro {b(f)}% e Lula {b(l)}% dos votos válidos, com 1 ponto para cada lado.**
 
 | O que entrou | Peso | O que deu para Flávio | Por quê |
 |---|---|---|---|
@@ -229,7 +229,7 @@ Não é pesquisa, não recomenda voto e não diz quem deveria ganhar. Detalhes: 
 
 LEITURA = f"""# Leitura da IA
 
-Pelos pesos que o autor definiu antes e a emenda 2 (decisão dele), a projeção é **Flávio {fi}% e Lula {li}%** ({b(f)}% e {b(l)}% com uma casa). Esta é a leitura do Claude sobre o que sustenta o número e onde ele é frágil, sem opinião sobre os candidatos.
+Pelos pesos que o autor definiu antes e a emenda 2 (decisão dele), a projeção é **Flávio {b(f)}% e Lula {b(l)}%**. Esta é a leitura do Claude sobre o que sustenta o número e onde ele é frágil, sem opinião sobre os candidatos.
 
 **O que sustenta.** O número não depende de uma escolha só. As pesquisas ({b(E['P'], 2)}%), o histórico ({b(E['H'], 2)}%) e a aritmética do 1º turno ({b(E['R'], 2)}%) chegaram ao mesmo lado por caminhos que não dependem um do outro, e {S['variantes_com_flavio_acima_de_50']} das {S['variantes']} variações também. O parâmetro de 50% e 50% não decide nada: de 40% a 60% para Flávio, o final vai de {b(var['outros 40% para Flávio e 60% para Lula'], 2)}% a {b(var['outros 60% para Flávio e 40% para Lula'], 2)}%.
 
@@ -237,7 +237,7 @@ Pelos pesos que o autor definiu antes e a emenda 2 (decisão dele), a projeção
 
 **Onde o número é frágil.** A esta distância da eleição, as pesquisas erraram {b(ADV['erros_P_horizonte']['2014'], 1)} e {b(ADV['erros_P_horizonte']['2018'], 1)} pontos a favor do candidato contra o PT em 2014 e 2018, e {b(abs(ADV['erros_P_horizonte']['2022']), 1)} ponto a favor do PT em 2022. A diferença projetada ({b(f - l, 1)} ponto) é menor que o erro que o próprio método teve no passado ({b(T['erro_absoluto_medio_final'], 1)} ponto, em média). O número é a melhor conta que os dados permitem; a chance de o resultado sair do outro lado existe e não é pequena.
 
-**Veredito.** Pelas regras do pré-registro e da emenda 2, **o método crava Flávio {fi}% e Lula {li}%** ({b(f)}% e {b(l)}% com uma casa). Isso é a consequência aritmética dos dados e dos pesos, não preferência, e não diz quem deveria ganhar.
+**Veredito.** Pelas regras do pré-registro e da emenda 2, **o método crava Flávio {b(f)}% e Lula {b(l)}%**. Isso é a consequência aritmética dos dados e dos pesos, não preferência, e não diz quem deveria ganhar.
 """
 
 ADVERS = f"""# Revisão adversarial
