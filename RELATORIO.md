@@ -5,7 +5,7 @@
 ## O que este relatório não consegue dizer (vem primeiro)
 
 - **Não é pesquisa e não mede intenção de ninguém.** É uma conta sobre pesquisas registradas, o histórico e o 1º turno.
-- **A faixa de 1 ponto foi escolhida pelo autor para a apresentação; não é margem de erro.** No teste do passado, o mesmo método, rodado 4 dias antes de 2014, 2018 e 2022, errou em média 1,7 ponto, e a faixa de 1 ponto teria contido o resultado em **0 das 3** eleições.
+- **A faixa de 1 ponto foi escolhida pelo autor para a apresentação; não é margem de erro.** No teste do passado, o mesmo método, rodado 4 dias antes de 2014, 2018 e 2022, errou em média 1,8 ponto, e a faixa de 1 ponto teria contido o resultado em **0 das 3** eleições.
 - **Nada depois de 2026-10-21** entra: pesquisas novas, debate, fato de reta final.
 - **Não diz quem deveria ganhar** e não recomenda voto ([`docs/LIMITE_ELEITORAL.md`](docs/LIMITE_ELEITORAL.md)).
 
@@ -13,70 +13,73 @@
 
 | | Flávio Bolsonaro | Lula |
 |---|---|---|
-| **Projeção (votos válidos)** | **50,5%** | **49,5%** |
-| Faixa de 1 ponto | 49,5% a 51,5% | 48,5% a 50,5% |
+| **Projeção, em número inteiro** | **51%** | **49%** |
+| Com uma casa | 50,8% | 49,2% |
+| Faixa de 1 ponto | 49,8% a 51,8% | 48,2% a 50,2% |
+
+Pela **emenda 2** (decisão do autor, depois de ver o número), instituto com um turno só de histórico conta como sem histórico; antes dela, o final era 50,52%. Nenhuma redução do peso da Vox Brasil, sozinha, chegaria a 51,0 com uma casa; em número inteiro, o resultado é 51 a 49.
 
 | Estimativa | Parte de Flávio | Peso | Contribuição |
 |---|---|---|---|
-| P, pesquisas | 50,41% | 60% | 30,25 |
+| P, pesquisas | 50,97% | 60% | 30,58 |
 | H, histórico | 50,57% | 25% | 12,64 |
 | R, capacidade de crescimento | 50,84% | 15% | 7,63 |
-| **Final** | **50,52%**, arredondado para 50,5% | | |
+| **Final** | **50,85%**, arredondado para 50,8% | | |
 
-As três estimativas, cada uma por um caminho diferente, deram Flávio entre 50,4% e 50,8%. Das 18 variantes da sensibilidade, 17 dão Flávio acima de 50%.
+As três estimativas, cada uma por um caminho diferente, deram Flávio entre 50,6% e 51,0%. Das 19 variantes da sensibilidade, 18 dão Flávio acima de 50%.
 
-## 2. P, pesquisas (50,41%)
+## 2. P, pesquisas (50,97%)
 
 27 pesquisas do 2º turno capturadas, 27 casadas com o registro no TSE e 26 conferidas numa segunda fonte. Na janela (fim de campo de 12/out em diante), a última de cada instituto: **17 institutos, 16 com Flávio na frente e 1 com Lula** (Vox Brasil). Média simples: 51,04%; mediana: 51,09%.
 
-O peso por acerto **puxou o número para Lula**: a média ponderada (50,41%) ficou abaixo da simples, porque a Vox Brasil errou só 0,49 ponto no 1º turno de 2026 e bateu no teto de 25% do peso, e porque a correção de viés reduziu a Veritá, a MDA e a Gerp, que no passado mostraram o candidato contra o PT maior do que a urna.
+Com a emenda 2, os institutos com um turno só de histórico (Vox Brasil, Palver, Gerp e Indexa) recebem o peso de quem não tem histórico; a Futura, com o menor erro em 3 turnos, bate no teto de 25%. A correção de viés reduziu a Veritá, a MDA e a Futura, que no passado mostraram o candidato contra o PT maior do que a urna, e aumentou AtlasIntel, PoderData e Datafolha, que mostraram menor. Antes da emenda, a Vox Brasil, única com Lula na frente, tinha 25% do peso e o P era 50,41%.
 
 | Instituto | Fim de campo | Flávio nos válidos | Nota de acerto | Correção | Corrigida | Peso | Registro TSE |
 |---|---|---|---|---|---|---|---|
-| Vox Brasil | 2026-10-17 | 49,01 | 0,49 | 0,00 | 49,01 | 25,0% | BR043322026 |
-| Futura | 2026-10-15 | 50,78 | 0,91 | -0,41 | 50,37 | 19,3% | BR037642026 |
-| Palver | 2026-10-13 | 50,51 | 1,07 | 0,00 | 50,51 | 14,0% | BR080282026 |
-| Real Time | 2026-10-19 | 51,61 | 1,61 | 0,16 | 51,77 | 6,2% | BR029522026 |
-| Quaest | 2026-10-13 | 51,11 | 1,63 | 0,26 | 51,37 | 6,0% | BR087292026 |
-| Datafolha | 2026-10-15 | 51,09 | 1,69 | 0,46 | 51,54 | 5,6% | BR004662026 |
-| MDA | 2026-10-15 | 50,49 | 1,89 | -0,68 | 49,81 | 4,5% | BR006522026 |
-| Ideia | 2026-10-19 | 51,06 | 2,05 | 0,00 | 51,06 | 3,8% | BR082512026 |
-| AtlasIntel | 2026-10-18 | 51,13 | 2,37 | 0,84 | 51,97 | 2,8% | BR024182026 |
-| Ipespe | 2026-10-15 | 51,06 | 2,48 | -0,13 | 50,93 | 2,6% | BR002232026 |
-| PoderData | 2026-10-18 | 51,58 | 2,58 | 0,60 | 52,17 | 2,4% | BR025862026 |
-| Gerp | 2026-10-16 | 52,63 | 3,12 | -1,04 | 51,59 | 1,6% | BR051872026 |
-| Nexus | 2026-10-18 | 50,32 | 3,16 | 0,00 | 50,32 | 1,6% | BR044992026 |
-| Alfa | 2026-10-19 | 51,53 | sem histórico | 0,00 | 51,53 | 1,2% | BR008202026 |
-| DataTrends | 2026-10-17 | 51,58 | sem histórico | 0,00 | 51,58 | 1,2% | BR044542026 |
-| Indexa | 2026-10-14 | 51,16 | 3,74 | 0,00 | 51,16 | 1,1% | BR046292026 |
-| Verita | 2026-10-16 | 51,03 | 4,10 | -1,81 | 49,22 | 0,9% | BR011072026 |
+| Futura | 2026-10-15 | 50,78 | 0,91 | -0,41 | 50,37 | 25,0% | BR037642026 |
+| Real Time | 2026-10-19 | 51,61 | 1,61 | 0,16 | 51,77 | 11,0% | BR029522026 |
+| Quaest | 2026-10-13 | 51,11 | 1,63 | 0,26 | 51,37 | 10,7% | BR087292026 |
+| Datafolha | 2026-10-15 | 51,09 | 1,69 | 0,46 | 51,54 | 10,0% | BR004662026 |
+| MDA | 2026-10-15 | 50,49 | 1,89 | -0,68 | 49,81 | 8,0% | BR006522026 |
+| Ideia | 2026-10-19 | 51,06 | 2,05 | 0,00 | 51,06 | 6,8% | BR082512026 |
+| AtlasIntel | 2026-10-18 | 51,13 | 2,37 | 0,84 | 51,97 | 5,1% | BR024182026 |
+| Ipespe | 2026-10-15 | 51,06 | 2,48 | -0,13 | 50,93 | 4,6% | BR002232026 |
+| PoderData | 2026-10-18 | 51,58 | 2,58 | 0,60 | 52,17 | 4,3% | BR025862026 |
+| Nexus | 2026-10-18 | 50,32 | 3,16 | 0,00 | 50,32 | 2,8% | BR044992026 |
+| Alfa | 2026-10-19 | 51,53 | sem histórico | 0,00 | 51,53 | 1,7% | BR008202026 |
+| DataTrends | 2026-10-17 | 51,58 | sem histórico | 0,00 | 51,58 | 1,7% | BR044542026 |
+| Gerp | 2026-10-16 | 52,63 | 1 turno, não conta | -1,04 | 51,59 | 1,7% | BR051872026 |
+| Indexa | 2026-10-14 | 51,16 | 1 turno, não conta | 0,00 | 51,16 | 1,7% | BR046292026 |
+| Palver | 2026-10-13 | 50,51 | 1 turno, não conta | 0,00 | 50,51 | 1,7% | BR080282026 |
+| Verita | 2026-10-16 | 51,03 | 4,10 | -1,81 | 49,22 | 1,7% | BR011072026 |
+| Vox Brasil | 2026-10-17 | 49,01 | 1 turno, não conta | 0,00 | 49,01 | 1,7% | BR043322026 |
 
 ### Ranking de acerto dos institutos (2014 a 2026, 2º turno pesando o dobro)
 
-| Posição | Instituto | Erro médio (pontos) | Turnos medidos | Viés no 2º turno (+ = Flávio/anti-PT maior) |
-|---|---|---|---|---|
-| 1 | Ranking Pesquisa | 0,07 | 1 | +0,07 |
-| 2 | Vox Brasil | 0,49 | 1 |  |
-| 3 | Futura | 0,91 | 3 | +1,22 |
-| 4 | Palver | 1,07 | 1 |  |
-| 5 | Real Time | 1,61 | 3 | -0,48 |
-| 6 | Quaest | 1,63 | 3 | -0,78 |
-| 7 | Datafolha | 1,69 | 7 | -0,76 |
-| 8 | MDA | 1,89 | 7 | +1,13 |
-| 9 | Ideia | 2,05 | 2 |  |
-| 10 | Parana Pesquisas | 2,26 | 4 | +2,99 |
-| 11 | AtlasIntel | 2,37 | 3 | -2,51 |
-| 12 | Ipec | 2,46 | 6 | -2,07 |
-| 13 | Ipespe | 2,48 | 4 | +0,27 |
-| 14 | PoderData | 2,58 | 4 | -1,79 |
-| 15 | Gerp | 3,12 | 1 | +3,12 |
-| 16 | Nexus | 3,16 | 2 |  |
-| 17 | Indexa | 3,74 | 1 |  |
-| 18 | Verita | 4,10 | 4 | +3,62 |
-| 19 | IPRI | 4,56 | 2 | +4,64 |
-| 20 | Vox Populi | 4,57 | 4 | -0,90 |
-| 21 | Sensus | 4,57 | 2 | +3,74 |
-| 22 | Brasmarket | 6,25 | 2 | +3,93 |
+| Posição | Instituto | Erro médio (pontos) | Turnos medidos | Conta no peso | Viés no 2º turno (+ = Flávio/anti-PT maior) |
+|---|---|---|---|---|---|
+| 1 | Ranking Pesquisa | 0,07 | 1 | não (1 turno) | +0,07 |
+| 2 | Vox Brasil | 0,49 | 1 | não (1 turno) |  |
+| 3 | Futura | 0,91 | 3 | sim | +1,22 |
+| 4 | Palver | 1,07 | 1 | não (1 turno) |  |
+| 5 | Real Time | 1,61 | 3 | sim | -0,48 |
+| 6 | Quaest | 1,63 | 3 | sim | -0,78 |
+| 7 | Datafolha | 1,69 | 7 | sim | -0,76 |
+| 8 | MDA | 1,89 | 7 | sim | +1,13 |
+| 9 | Ideia | 2,05 | 2 | sim |  |
+| 10 | Parana Pesquisas | 2,26 | 4 | sim | +2,99 |
+| 11 | AtlasIntel | 2,37 | 3 | sim | -2,51 |
+| 12 | Ipec | 2,46 | 6 | sim | -2,07 |
+| 13 | Ipespe | 2,48 | 4 | sim | +0,27 |
+| 14 | PoderData | 2,58 | 4 | sim | -1,79 |
+| 15 | Gerp | 3,12 | 1 | não (1 turno) | +3,12 |
+| 16 | Nexus | 3,16 | 2 | sim |  |
+| 17 | Indexa | 3,74 | 1 | não (1 turno) |  |
+| 18 | Verita | 4,10 | 4 | sim | +3,62 |
+| 19 | IPRI | 4,56 | 2 | sim | +4,64 |
+| 20 | Vox Populi | 4,57 | 4 | sim | -0,90 |
+| 21 | Sensus | 4,57 | 2 | sim | +3,74 |
+| 22 | Brasmarket | 6,25 | 2 | sim | +3,93 |
 
 ## 3. H, histórico (50,57%)
 
@@ -139,7 +142,7 @@ Com os outros divididos **50% e 50%** (parâmetro do autor, para não puxar para
 | 2018 | 24,7% | 80% |
 | 2022 | 8,4% | 51% |
 
-O candidato do PT ficou com metade ou mais dos outros em quase todas as eleições, mas **os outros eram de centro e de esquerda** (Garotinho, Ciro, Marina, Heloísa Helena, Tebet). Não existe eleição passada em que os maiores outros se apresentassem à direita, como em 2026; por isso o 50% e 50% é uma escolha, não uma medida. Com a divisão estimada para 2022 (51% para o PT), o número final fica em 50,50%.
+O candidato do PT ficou com metade ou mais dos outros em quase todas as eleições, mas **os outros eram de centro e de esquerda** (Garotinho, Ciro, Marina, Heloísa Helena, Tebet). Não existe eleição passada em que os maiores outros se apresentassem à direita, como em 2026; por isso o 50% e 50% é uma escolha, não uma medida. Com a divisão estimada para 2022 (51% para o PT), o número final fica em 50,83%.
 
 ## 5. Teste do passado
 
@@ -148,35 +151,36 @@ O mesmo método, com só o que se sabia 4 dias antes de cada eleição:
 | Eleição | Urna | Pesquisas (P) | Média simples das pesquisas | Histórico (H) | Crescimento (R) | Número final | Erro do final |
 |---|---|---|---|---|---|---|---|
 | 2014 | 48,36 | 51,60 | 51,60 | 46,38 | 45,94 | 49,45 | +1,09 |
-| 2018 | 55,13 | 58,25 | 58,46 | 57,50 | 58,27 | 58,07 | +2,94 |
-| 2022 | 49,10 | 47,97 | 49,15 | 48,08 | 47,27 | 47,89 | -1,20 |
+| 2018 | 55,13 | 58,31 | 58,46 | 57,50 | 58,27 | 58,10 | +2,97 |
+| 2022 | 49,10 | 47,97 | 49,15 | 48,08 | 47,27 | 47,89 | -1,21 |
 
-Erro médio (absoluto): número final 1,74; pesquisas com peso 2,50; média simples das pesquisas 2,21; histórico 1,79; crescimento 2,46. **A combinação errou menos que as pesquisas sozinhas** nas três eleições juntas, o que sustenta a ideia de usar o histórico e o 1º turno como freio. Em 2022, porém, a média simples das pesquisas acertou quase em cheio e o peso por acerto piorou a conta; com três eleições, isso é registro, não regra. A faixa de 1 ponto conteve o resultado em 0 das 3.
+Erro médio (absoluto): número final 1,76; pesquisas com peso 2,52; média simples das pesquisas 2,21; histórico 1,79; crescimento 2,46. **A combinação errou menos que as pesquisas sozinhas** nas três eleições juntas, o que sustenta a ideia de usar o histórico e o 1º turno como freio. Em 2022, porém, a média simples das pesquisas acertou quase em cheio e o peso por acerto piorou a conta; com três eleições, isso é registro, não regra. A faixa de 1 ponto conteve o resultado em 0 das 3.
 
 ## 6. Sensibilidade
 
 | Variante | Flávio | Lula | Diferença |
 |---|---|---|---|
-| principal (60/25/15) | 50,52 | 49,48 | 0,00 |
-| só pesquisas (P) | 50,41 | 49,59 | -0,10 |
-| pesos 50/30/20 | 50,55 | 49,45 | +0,03 |
-| pesos iguais | 50,61 | 49,39 | +0,09 |
-| outros 40% para Flávio e 60% para Lula | 50,40 | 49,60 | -0,12 |
-| outros 45% para Flávio e 55% para Lula | 50,46 | 49,54 | -0,06 |
-| outros 55% para Flávio e 45% para Lula | 50,58 | 49,42 | +0,06 |
-| outros 60% para Flávio e 40% para Lula | 50,63 | 49,37 | +0,12 |
-| outros divididos como em 2022 (estimativa por município) | 50,50 | 49,50 | -0,02 |
-| H só com 2022 | 50,45 | 49,55 | -0,06 |
-| P sem correção de viés | 50,55 | 49,45 | +0,03 |
-| P sem peso por acerto | 50,83 | 49,17 | +0,31 |
-| P média simples (sem peso e sem correção) | 50,89 | 49,11 | +0,38 |
-| P com todas as pesquisas da janela (média simples) | 50,88 | 49,12 | +0,36 |
-| R sem fator de comparecimento por UF | 50,53 | 49,47 | +0,01 |
-| nota de acerto encolhida pelo número de eleições | 50,78 | 49,22 | +0,27 |
-| P menos o erro médio das pesquisas a 4-13 dias (2014-2022) | 49,47 | 50,53 | -1,05 |
-| P corrigido pelo erro de cada instituto no 1º turno de 2026 | 51,11 | 48,89 | +0,60 |
+| principal (60/25/15, com a emenda 2) | 50,85 | 49,15 | 0,00 |
+| como no pré-registro, antes da emenda 2 (Vox Brasil com 25% do peso) | 50,52 | 49,48 | -0,33 |
+| só pesquisas (P) | 50,97 | 49,03 | +0,12 |
+| pesos 50/30/20 | 50,82 | 49,18 | -0,03 |
+| pesos iguais | 50,79 | 49,21 | -0,06 |
+| outros 40% para Flávio e 60% para Lula | 50,73 | 49,27 | -0,12 |
+| outros 45% para Flávio e 55% para Lula | 50,79 | 49,21 | -0,06 |
+| outros 55% para Flávio e 45% para Lula | 50,91 | 49,09 | +0,06 |
+| outros 60% para Flávio e 40% para Lula | 50,97 | 49,03 | +0,12 |
+| outros divididos como em 2022 (estimativa por município) | 50,83 | 49,17 | -0,02 |
+| H só com 2022 | 50,78 | 49,22 | -0,06 |
+| P sem correção de viés | 50,88 | 49,12 | +0,03 |
+| P sem peso por acerto | 50,83 | 49,17 | -0,02 |
+| P média simples (sem peso e sem correção) | 50,89 | 49,11 | +0,04 |
+| P com todas as pesquisas da janela (média simples) | 50,88 | 49,12 | +0,03 |
+| R sem fator de comparecimento por UF | 50,86 | 49,14 | +0,01 |
+| nota de acerto encolhida pelo número de eleições | 50,78 | 49,22 | -0,07 |
+| P menos o erro médio das pesquisas a 4-13 dias (2014-2022) | 49,79 | 50,21 | -1,06 |
+| P corrigido pelo erro de cada instituto no 1º turno de 2026 | 51,88 | 48,12 | +1,03 |
 
-As duas variantes que mais mexem vêm da revisão adversarial (§7): descontar o erro médio das pesquisas a esta distância da eleição dá 49,47% (Lula na frente); corrigir cada instituto pelo erro dele no 1º turno de 2026 dá 51,11%. As duas ficam dentro da faixa de 1 ponto.
+As duas variantes que mais mexem vêm da revisão adversarial (§7): descontar o erro médio das pesquisas a esta distância da eleição dá 49,79% (Lula na frente); corrigir cada instituto pelo erro dele no 1º turno de 2026 dá 51,88%. A primeira fica dentro da faixa e a segunda 0,08 ponto fora da faixa.
 
 ## 7. Validação
 

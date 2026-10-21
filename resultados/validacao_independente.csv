@@ -4,12 +4,12 @@ Lula 1º turno 2026 (%) contra o projeto do vídeo 7,45.1627679106361,45.1608081
 anti-PT 2º turno 2014 (%) contra a coluna da urna do Pindograma,48.360863897634644,48.3608638976347,5.684341886080802e-14,0.02,True
 anti-PT 2º turno 2018 (%) contra a coluna da urna do Pindograma,55.13023128003058,55.130141811216,8.946881457916334e-05,0.02,True
 abstenção 1º turno 2026 (%),21.083585725786424,21.083852190029297,0.00026646424287335435,0.01,True
-P (pesquisas),50.41269525881313,50.41269965951905,4.4007059187833875e-06,0.001,True
-soma dos pesos,1.0,1.0,0.0,1e-09,True
+P (pesquisas),50.96659305503011,50.966598375933835,5.320903724737036e-06,0.001,True
+soma dos pesos,1.0,0.9999999999999998,2.220446049250313e-16,1e-09,True
 maior peso não passa de 25%,0.25,0.25,0.0,1e-09,True
 H (histórico),50.573916379531205,50.573916379531205,0.0,0.001,True
 R (crescimento),50.8353659732472,50.8353659732472,0.0,0.001,True
-número final de Flávio (sem arredondar),50.516401146157754,50.51640378658131,2.640423552691118e-06,0.001,True
-número final de Flávio (arredondado),50.5,50.5,0.0,0.0,True
-número final de Lula (arredondado),49.5,49.5,0.0,0.0,True
+número final de Flávio (sem arredondar),50.848739823887946,50.84874301643018,3.1925422305789652e-06,0.001,True
+número final de Flávio (arredondado),50.8,50.8,0.0,0.0,True
+número final de Lula (arredondado),49.2,49.2,0.0,0.0,True
 parte dos outros que Lula precisaria,0.6194067521636039,0.6194067521636039,0.0,1e-09,True

@@ -61,7 +61,7 @@ conferir("abstenção 1º turno 2026 (%)", resumo["abstencao"]["abstencao_1t_202
 # 3. P em Python puro
 p = pd.read_csv(RES / "p_pesquisas_usadas.csv").to_dict("records")
 rank = pd.read_csv(RES / "institutos_ranking.csv")
-p75 = statistics.quantiles(rank.nota.tolist(), n=4, method="inclusive")[2]
+p75 = float(rank.nota.dropna().quantile(0.75))  # mesma definicao do pandas (interpolacao linear)
 pesos = []
 for r in p:
     nota = r["nota"] if r["nota"] == r["nota"] else p75

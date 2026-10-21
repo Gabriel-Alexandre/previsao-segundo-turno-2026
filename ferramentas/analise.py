@@ -183,7 +183,8 @@ def main() -> None:
     erros = M.erros_institutos()
     nt = M.notas(erros, 2027)
     tab("institutos_erros.csv", erros.round(3))
-    rank = nt.sort_values("nota").reset_index(drop=True)
+    rank = nt.sort_values("nota_medida").reset_index(drop=True)
+    rank["conta_no_peso"] = rank.nota.notna()
     rank.insert(0, "posicao", range(1, len(rank) + 1))
     tab("institutos_ranking.csv", rank.round(3))
 
@@ -223,7 +224,9 @@ def main() -> None:
     def add(rotulo, valor):
         sens.append({"variante": rotulo, "flavio": valor, "lula": 100 - valor, "diferenca_para_o_principal": valor - F})
 
-    add("principal (60/25/15)", F)
+    add("principal (60/25/15, com a emenda 2)", F)
+    Pe1, _ = M.estimativa_P(jan[["instituto", "anti_valido"]], M.notas(erros, 2027, min_turnos=1))
+    add("como no pré-registro, antes da emenda 2 (Vox Brasil com 25% do peso)", M.combinar(Pe1, H, R))
     add("só pesquisas (P)", P)
     add("pesos 50/30/20", M.combinar(P, H, R, {"P": 0.5, "H": 0.3, "R": 0.2}))
     add("pesos iguais", M.combinar(P, H, R, {"P": 1 / 3, "H": 1 / 3, "R": 1 / 3}))
@@ -244,8 +247,8 @@ def main() -> None:
     Rsf, _ = M.estimativa_R(2026, com_fator=False)
     add("R sem fator de comparecimento por UF", M.combinar(P, H, Rsf))
     # nota encolhida pelo numero de rodadas (instituto com 1 rodada so puxa metade para a propria nota)
-    nt2 = nt.copy()
-    med = nt.nota.median()
+    nt2 = M.notas(erros, 2027, min_turnos=1)
+    med = nt2.nota.median()
     nt2["nota"] = (nt2.nota * nt2.n_rodadas + med * 2) / (nt2.n_rodadas + 2)
     Ps, _ = M.estimativa_P(jan[["instituto", "anti_valido"]], nt2)
     add("nota de acerto encolhida pelo número de eleições", M.combinar(Ps, H, R))
@@ -263,9 +266,10 @@ def main() -> None:
     resumo = {
         "gerado_em": str(date.today()), "corte_das_pesquisas": str(CORTE_2026),
         "final": {"flavio": flavio, "lula": lula, "faixa_pontos": 1.0, "flavio_sem_arredondar": F,
+                  "flavio_inteiro": int(round(F)), "lula_inteiro": 100 - int(round(F)),
                   "flavio_faixa": [round(flavio - 1, 1), round(flavio + 1, 1)], "lula_faixa": [round(lula - 1, 1), round(lula + 1, 1)]},
         "estimativas": {"P": P, "H": H, "R": R, "pesos": M.PESOS, "contribuicao": {"P": M.PESOS["P"] * P, "H": M.PESOS["H"] * H, "R": M.PESOS["R"] * R}},
-        "P": {"institutos": len(detP), "media_simples": float(jan.anti_valido.mean()), "mediana": float(jan.anti_valido.median()),
+        "P": {"institutos": len(detP), "P_antes_da_emenda_2": float(Pe1), "media_simples": float(jan.anti_valido.mean()), "mediana": float(jan.anti_valido.median()),
               "min": float(jan.anti_valido.min()), "max": float(jan.anti_valido.max()),
               "institutos_com_flavio_na_frente": int((jan.anti_valido > 50).sum()), "institutos_com_lula_na_frente": int((jan.anti_valido < 50).sum()),
               "pesquisas_capturadas": len(todas), "pesquisas_registradas": int(todas.casou.sum()), "pesquisas_conferidas": int(todas.conferida.sum()),

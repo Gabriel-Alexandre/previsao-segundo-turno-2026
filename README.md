@@ -6,8 +6,11 @@ Projeto aberto que crava uma porcentagem para cada candidato no 2º turno de 25/
 
 | | Flávio Bolsonaro | Lula |
 |---|---|---|
-| **Projeção (votos válidos)** | **50,5%** | **49,5%** |
-| Faixa de 1 ponto (escolha do autor, não margem de erro) | 49,5% a 51,5% | 48,5% a 50,5% |
+| **Projeção (votos válidos)** | **51%** | **49%** |
+| Com uma casa | 50,8% | 49,2% |
+| Faixa de 1 ponto (escolha do autor, não margem de erro) | 49,8% a 51,8% | 48,2% a 50,2% |
+
+Pela emenda 2 (decisão do autor depois de ver o primeiro número, 50,5 a 49,5), instituto com um turno só de histórico conta como sem histórico; a Vox Brasil, única pesquisa com Lula na frente, deixou de ter 25% do peso.
 
 > ⛔ **Não é pesquisa e não diz quem deveria ganhar.** É a consequência aritmética de dados públicos e de pesos definidos antes ([`docs/LIMITE_ELEITORAL.md`](docs/LIMITE_ELEITORAL.md)). No teste do passado, o mesmo método errou em média 1,7 ponto a 4 dias da eleição.
 
@@ -30,7 +33,7 @@ Projeto aberto que crava uma porcentagem para cada candidato no 2º turno de 25/
 2. **Histórico (25%):** quanto da vantagem de quem lidera o 1º turno sobra no 2º, nas 6 eleições de 2002 a 2022.
 3. **Crescimento (15%):** o 1º turno de 2026 com os outros candidatos divididos meio a meio e o comparecimento de cada UF como costuma ser no 2º turno.
 4. **Teste do passado:** o mesmo método rodado 4 dias antes de 2014, 2018 e 2022.
-5. **Validação:** totais do TSE conferidos turno a turno, recontagem independente, revisão adversarial e 18 variantes de sensibilidade.
+5. **Validação:** totais do TSE conferidos turno a turno, recontagem independente, revisão adversarial e 19 variantes de sensibilidade.
 
 ## Estrutura
 

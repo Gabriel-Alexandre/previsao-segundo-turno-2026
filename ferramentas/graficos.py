@@ -46,22 +46,23 @@ def salvar(fig, nome: str) -> None:
 def g01_resultado(r: dict) -> None:
     f, l = r["final"]["flavio"], r["final"]["lula"]
     fig, ax = nova("A projeção do método para o 2º turno (votos válidos)", "TSE, 17 pesquisas registradas no TSE, 2002 a 2026")
-    for i, (nome, v, cor) in enumerate((("Flávio Bolsonaro", f, COR["flavio"]), ("Lula", l, COR["lula"]))):
+    fi, li = r["final"]["flavio_inteiro"], r["final"]["lula_inteiro"]
+    for i, (nome, v, vi, cor) in enumerate((("Flávio Bolsonaro", f, fi, COR["flavio"]), ("Lula", l, li, COR["lula"]))):
         y = 1 - i
         ax.barh(y, v, height=0.5, color=cor)
         ax.errorbar(v, y, xerr=1, color="black", capsize=14, lw=2.5)
         ax.text(1.5, y, nome, va="center", color="white", fontsize=34, fontweight="bold")
-        ax.text(v + 1.8, y, f"{br(v)}%", va="center", fontsize=48, fontweight="bold", color=cor)
-        ax.text(v + 1.8, y - 0.28, f"de {br(v - 1)}% a {br(v + 1)}%", va="center", fontsize=18, color="#333333")
+        ax.text(v + 1.8, y, f"{vi}%", va="center", fontsize=54, fontweight="bold", color=cor)
+        ax.text(v + 1.8, y - 0.36, f"{br(v)}% com uma casa\nfaixa: {br(v - 1)}% a {br(v + 1)}%", va="center", fontsize=17, color="#333333")
     ax.axvline(50, color="black", lw=1.5, ls="--")
     ax.text(50, 1.45, "50%", ha="center", fontsize=16)
-    ax.set_xlim(0, 64)
+    ax.set_xlim(0, 70)
     ax.set_ylim(-0.6, 1.6)
     ax.set_yticks([])
     ax.set_xlabel("% dos votos válidos")
     ax.xaxis.set_label_coords(0.5, -0.06)
-    fig.text(0.08, 0.05, "Pesos escritos antes: pesquisas 60%, histórico 25%, capacidade de crescimento 15%. A faixa de 1 ponto é a escolhida pelo autor, não margem de erro.",
-             fontsize=14, color="#333333")
+    fig.text(0.08, 0.05, "Pesos: pesquisas 60%, histórico 25%, crescimento 15%. Instituto com 1 turno de histórico conta como sem histórico (emenda 2). A faixa não é margem de erro.",
+             fontsize=13, color="#333333")
     salvar(fig, "g01_resultado.png")
 
 

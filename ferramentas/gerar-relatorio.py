@@ -35,6 +35,7 @@ def n(x):
 
 
 f, l = r["final"]["flavio"], r["final"]["lula"]
+f_raw = r["final"]["flavio_sem_arredondar"]
 E = r["estimativas"]
 H = r["H"]
 A = r["abstencao"]
@@ -48,6 +49,21 @@ v_horiz = var["P menos o erro médio das pesquisas a 4-13 dias (2014-2022)"]
 v_1t = var["P corrigido pelo erro de cada instituto no 1º turno de 2026"]
 v_encolhida = var["nota de acerto encolhida pelo número de eleições"]
 v_simples = var["P média simples (sem peso e sem correção)"]
+v_pre_P = r["P"]["P_antes_da_emenda_2"]
+v_pre = var["como no pré-registro, antes da emenda 2 (Vox Brasil com 25% do peso)"]
+fi, li = r["final"]["flavio_inteiro"], r["final"]["lula_inteiro"]
+faixa_lo, faixa_hi = f - 1, f + 1
+
+
+def na_faixa(v):
+    return faixa_lo - 0.05 <= v <= faixa_hi + 0.05
+
+
+def onde(v):
+    if na_faixa(v):
+        return "dentro da faixa"
+    return f"{b(abs(v - (faixa_hi if v > faixa_hi else faixa_lo)), 2)} ponto fora da faixa"
+
 tr22 = TR.set_index("ano").loc[2022]
 perfeitas = REG[(REG.eleicoes_1t == 6) & (REG.acertos_1t == 6)]
 
@@ -59,7 +75,7 @@ def tabela(df: pd.DataFrame) -> str:
 
 tab_p = tabela(pd.DataFrame({
     "Instituto": P.instituto, "Fim de campo": P.campo_fim, "Flávio nos válidos": P.anti_valido.map(lambda x: b(x, 2)),
-    "Nota de acerto": P.nota.map(lambda x: b(x, 2) if x == x else "sem histórico"), "Correção": P.correcao.map(lambda x: b(x, 2)),
+    "Nota de acerto": [b(a, 2) if a == a else ("1 turno, não conta" if n == n and n >= 1 else "sem histórico") for a, n in zip(P.nota, P.n_rodadas)], "Correção": P.correcao.map(lambda x: b(x, 2)),
     "Corrigida": P.anti_corrigido.map(lambda x: b(x, 2)), "Peso": P.peso.map(lambda x: b(100 * x, 1) + "%"), "Registro TSE": P.registro_tse}))
 tab_lid = tabela(pd.DataFrame({"Eleição": LID.ano, "Líder do 1º turno": LID.lider_1t, "Vantagem no 1º (entre os dois)": LID.vantagem_1t.map(b),
                                "Vantagem no 2º": LID.vantagem_2t.map(b), "Sobrou da vantagem": (100 * LID.razao).map(lambda x: b(x, 0) + "%"),
@@ -75,8 +91,8 @@ tab_bt = tabela(pd.DataFrame({"Eleição": BT.ano, "Urna": BT.urna.map(lambda x:
                               "Número final": BT.final.map(lambda x: b(x, 2)), "Erro do final": BT.erro_final.map(lambda x: ("+" if x > 0 else "") + b(x, 2))}))
 tab_se = tabela(pd.DataFrame({"Variante": SE.variante, "Flávio": SE.flavio.map(lambda x: b(x, 2)), "Lula": SE.lula.map(lambda x: b(x, 2)),
                               "Diferença": SE.diferenca_para_o_principal.map(lambda x: ("+" if x > 0 else "") + b(x, 2))}))
-tab_rank = tabela(pd.DataFrame({"Posição": RANK.posicao, "Instituto": RANK.instituto, "Erro médio (pontos)": RANK.nota.map(lambda x: b(x, 2)),
-                                "Turnos medidos": RANK.n_rodadas, "Viés no 2º turno (+ = Flávio/anti-PT maior)": RANK.vies_2t.map(lambda x: ("+" if x > 0 else "") + b(x, 2) if x == x else "")}))
+tab_rank = tabela(pd.DataFrame({"Posição": RANK.posicao, "Instituto": RANK.instituto, "Erro médio (pontos)": RANK.nota_medida.map(lambda x: b(x, 2)),
+                                "Turnos medidos": RANK.n_rodadas, "Conta no peso": RANK.conta_no_peso.map({True: "sim", False: "não (1 turno)"}), "Viés no 2º turno (+ = Flávio/anti-PT maior)": RANK.vies_2t.map(lambda x: ("+" if x > 0 else "") + b(x, 2) if x == x else "")}))
 tab_uf = tabela(pd.DataFrame({"UF": perfeitas.uf, "Acertos no 1º turno": perfeitas.acertos_1t.astype(str) + " de 6",
                               "Acertos no 2º turno": perfeitas.acertos_2t.astype(str) + " de 6", "1º turno de 2026": perfeitas.vencedor_1t_2026}))
 tab_val = tabela(pd.DataFrame({"Número": VAL.numero, "Passou": VAL.passou.map({True: "sim", False: "NÃO"})}))
@@ -97,8 +113,11 @@ RELATORIO = f"""# Relatório: projeção do 2º turno de 2026
 
 | | Flávio Bolsonaro | Lula |
 |---|---|---|
-| **Projeção (votos válidos)** | **{b(f)}%** | **{b(l)}%** |
+| **Projeção, em número inteiro** | **{fi}%** | **{li}%** |
+| Com uma casa | {b(f)}% | {b(l)}% |
 | Faixa de 1 ponto | {b(f-1)}% a {b(f+1)}% | {b(l-1)}% a {b(l+1)}% |
+
+Pela **emenda 2** (decisão do autor, depois de ver o número), instituto com um turno só de histórico conta como sem histórico; antes dela, o final era {b(v_pre, 2)}%. Nenhuma redução do peso da Vox Brasil, sozinha, chegaria a 51,0 com uma casa; em número inteiro, o resultado é {fi} a {li}.
 
 | Estimativa | Parte de Flávio | Peso | Contribuição |
 |---|---|---|---|
@@ -113,7 +132,7 @@ As três estimativas, cada uma por um caminho diferente, deram Flávio entre {b(
 
 {r['P']['pesquisas_capturadas']} pesquisas do 2º turno capturadas, {r['P']['pesquisas_registradas']} casadas com o registro no TSE e {r['P']['pesquisas_conferidas']} conferidas numa segunda fonte. Na janela (fim de campo de 12/out em diante), a última de cada instituto: **{r['P']['institutos']} institutos, {r['P']['institutos_com_flavio_na_frente']} com Flávio na frente e {r['P']['institutos_com_lula_na_frente']} com Lula** (Vox Brasil). Média simples: {b(r['P']['media_simples'], 2)}%; mediana: {b(r['P']['mediana'], 2)}%.
 
-O peso por acerto **puxou o número para Lula**: a média ponderada ({b(E['P'], 2)}%) ficou abaixo da simples, porque a Vox Brasil errou só {b(P.set_index('instituto').loc['Vox Brasil','nota'], 2)} ponto no 1º turno de 2026 e bateu no teto de 25% do peso, e porque a correção de viés reduziu a Veritá, a MDA e a Gerp, que no passado mostraram o candidato contra o PT maior do que a urna.
+Com a emenda 2, os institutos com um turno só de histórico (Vox Brasil, Palver, Gerp e Indexa) recebem o peso de quem não tem histórico; a Futura, com o menor erro em 3 turnos, bate no teto de 25%. A correção de viés reduziu a Veritá, a MDA e a Futura, que no passado mostraram o candidato contra o PT maior do que a urna, e aumentou AtlasIntel, PoderData e Datafolha, que mostraram menor. Antes da emenda, a Vox Brasil, única com Lula na frente, tinha 25% do peso e o P era {b(v_pre_P, 2)}%.
 
 {tab_p}
 
@@ -169,7 +188,7 @@ Erro médio (absoluto): número final {b(T['erro_absoluto_medio_final'], 2)}; pe
 
 {tab_se}
 
-As duas variantes que mais mexem vêm da revisão adversarial (§7): descontar o erro médio das pesquisas a esta distância da eleição dá {b(v_horiz, 2)}% (Lula na frente); corrigir cada instituto pelo erro dele no 1º turno de 2026 dá {b(v_1t, 2)}%. As duas ficam dentro da faixa de 1 ponto.
+As duas variantes que mais mexem vêm da revisão adversarial (§7): descontar o erro médio das pesquisas a esta distância da eleição dá {b(v_horiz, 2)}% (Lula na frente); corrigir cada instituto pelo erro dele no 1º turno de 2026 dá {b(v_1t, 2)}%. A primeira fica {onde(v_horiz)} e a segunda {onde(v_1t)}.
 
 ## 7. Validação
 
@@ -189,7 +208,7 @@ Análise feita pelo Claude, modelo de IA da Anthropic, com o método, os pesos e
 
 RESUMO = f"""# Resumo simples
 
-**A projeção do método para o 2º turno de 25/out/2026: Flávio Bolsonaro {b(f)}% e Lula {b(l)}% dos votos válidos, com 1 ponto para cada lado.**
+**A projeção do método para o 2º turno de 25/out/2026: Flávio Bolsonaro {fi}% e Lula {li}% dos votos válidos, com 1 ponto para cada lado** ({b(f)}% e {b(l)}% com uma casa).
 
 | O que entrou | Peso | O que deu para Flávio | Por quê |
 |---|---|---|---|
@@ -210,15 +229,15 @@ Não é pesquisa, não recomenda voto e não diz quem deveria ganhar. Detalhes: 
 
 LEITURA = f"""# Leitura da IA
 
-Pelos pesos que o autor definiu antes, a projeção é **Flávio {b(f)}% e Lula {b(l)}%**. Esta é a leitura do Claude sobre o que sustenta o número e onde ele é frágil, sem opinião sobre os candidatos.
+Pelos pesos que o autor definiu antes e a emenda 2 (decisão dele), a projeção é **Flávio {fi}% e Lula {li}%** ({b(f)}% e {b(l)}% com uma casa). Esta é a leitura do Claude sobre o que sustenta o número e onde ele é frágil, sem opinião sobre os candidatos.
 
 **O que sustenta.** O número não depende de uma escolha só. As pesquisas ({b(E['P'], 2)}%), o histórico ({b(E['H'], 2)}%) e a aritmética do 1º turno ({b(E['R'], 2)}%) chegaram ao mesmo lado por caminhos que não dependem um do outro, e {S['variantes_com_flavio_acima_de_50']} das {S['variantes']} variações também. O parâmetro de 50% e 50% não decide nada: de 40% a 60% para Flávio, o final vai de {b(var['outros 40% para Flávio e 60% para Lula'], 2)}% a {b(var['outros 60% para Flávio e 40% para Lula'], 2)}%.
 
-**O que puxou o número para Lula, dentro do próprio método.** O peso por acerto: a Vox Brasil, única pesquisa com Lula na frente, acertou o 1º turno de 2026 e levou o teto de 25% do peso. Com a nota encolhida pelo número de eleições, o final iria a {b(v_encolhida, 2)}%; com a média simples, a {b(v_simples, 2)}%. A regra foi escrita antes e ficou como estava.
+**O que mudou depois de ver o número.** No pré-registro, a Vox Brasil, única pesquisa com Lula na frente, levava 25% do peso por ter acertado um turno só, e o final era {b(v_pre, 2)}%. O autor decidiu que ela não deveria pesar tanto; a regra adotada (um turno só não é histórico) vale para todos os institutos e levou o final a {b(f_raw, 2)}%. Isso está declarado como emenda feita depois de ver o resultado, e o número anterior continua publicado.
 
 **Onde o número é frágil.** A esta distância da eleição, as pesquisas erraram {b(ADV['erros_P_horizonte']['2014'], 1)} e {b(ADV['erros_P_horizonte']['2018'], 1)} pontos a favor do candidato contra o PT em 2014 e 2018, e {b(abs(ADV['erros_P_horizonte']['2022']), 1)} ponto a favor do PT em 2022. A diferença projetada ({b(f - l, 1)} ponto) é menor que o erro que o próprio método teve no passado ({b(T['erro_absoluto_medio_final'], 1)} ponto, em média). O número é a melhor conta que os dados permitem; a chance de o resultado sair do outro lado existe e não é pequena.
 
-**Veredito.** Pelas regras escritas antes, **o método crava Flávio {b(f)}% e Lula {b(l)}%**. Isso é a consequência aritmética dos dados e dos pesos, não preferência, e não diz quem deveria ganhar.
+**Veredito.** Pelas regras do pré-registro e da emenda 2, **o método crava Flávio {fi}% e Lula {li}%** ({b(f)}% e {b(l)}% com uma casa). Isso é a consequência aritmética dos dados e dos pesos, não preferência, e não diz quem deveria ganhar.
 """
 
 ADVERS = f"""# Revisão adversarial
@@ -238,7 +257,7 @@ Três leitores, cada um procurando o defeito que mais o incomodaria. O que cada 
 
 | Objeção | O que os dados dizem | Efeito |
 |---|---|---|
-| A Vox Brasil, única com Lula na frente, ganhou 25% do peso com uma eleição só | verdade, pela regra do §4.7 | com a nota encolhida pelo número de eleições: **{b(v_encolhida, 2)}%**; com a média simples: {b(v_simples, 2)}% |
+| A Vox Brasil, única com Lula na frente, ganhou 25% do peso com uma eleição só | verdade, pela regra do §4.7 | corrigido pela **emenda 2**, decisão do autor depois de ver o número: de {b(v_pre, 2)}% para {b(f_raw, 2)}% |
 | No 1º turno de 2026 os institutos mostraram Flávio menor que a urna | erro médio de {b(ADV['erro_1t_2026_medio_institutos'], 2)} ponto na escala da parte | corrigindo cada instituto por isso: **{b(v_1t, 2)}%**; é a variante mais forte a favor de Flávio |
 | O 50% e 50% é generoso com Lula, já que os outros se apresentam à direita | é o parâmetro do autor, para ser conservador | com 60% para Flávio: {b(var['outros 60% para Flávio e 40% para Lula'], 2)}% |
 
@@ -252,7 +271,7 @@ Três leitores, cada um procurando o defeito que mais o incomodaria. O que cada 
 | Regressão ecológica dos outros | informativa; não entra no número e o limite está dito |
 | Linguagem | sem "vai ganhar", "favorito" ou recomendação de voto (`ferramentas/conferir-linguagem.py`) |
 
-**Conclusão da revisão:** as duas objeções mais fortes puxam para lados opostos e caem, as duas, dentro da faixa de 1 ponto em torno de {b(f)}%.
+**Conclusão da revisão:** as duas objeções mais fortes puxam para lados opostos: a primeira fica {onde(v_horiz)} e a segunda {onde(v_1t)}, em torno de {b(f)}%.
 """
 
 (RAIZ / "RELATORIO.md").write_text(RELATORIO, encoding="utf-8")

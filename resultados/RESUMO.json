@@ -2,21 +2,23 @@
  "gerado_em": "2026-10-21",
  "corte_das_pesquisas": "2026-10-21",
  "final": {
-  "flavio": 50.5,
-  "lula": 49.5,
+  "flavio": 50.8,
+  "lula": 49.2,
   "faixa_pontos": 1.0,
-  "flavio_sem_arredondar": 50.516401146157754,
+  "flavio_sem_arredondar": 50.848739823887946,
+  "flavio_inteiro": 51,
+  "lula_inteiro": 49,
   "flavio_faixa": [
-   49.5,
-   51.5
+   49.8,
+   51.8
   ],
   "lula_faixa": [
-   48.5,
-   50.5
+   48.2,
+   50.2
   ]
  },
  "estimativas": {
-  "P": 50.41269525881313,
+  "P": 50.96659305503011,
   "H": 50.573916379531205,
   "R": 50.8353659732472,
   "pesos": {
@@ -25,13 +27,14 @@
    "R": 0.15
   },
   "contribuicao": {
-   "P": 30.247617155287877,
+   "P": 30.579955833018065,
    "H": 12.643479094882801,
    "R": 7.62530489598708
   }
  },
  "P": {
   "institutos": 17,
+  "P_antes_da_emenda_2": 50.41269525881313,
   "media_simples": 51.04008571291187,
   "mediana": 51.08695652173913,
   "min": 49.010989010989015,
@@ -42,10 +45,10 @@
   "pesquisas_registradas": 27,
   "pesquisas_conferidas": 26,
   "maior_peso": {
-   "instituto": "Vox Brasil",
+   "instituto": "Futura",
    "peso": 0.25
   },
-  "correcao_media_ponderada": -0.05736652985233237
+  "correcao_media_ponderada": -0.0513919914676942
  },
  "H": {
   "razao_mediana": 0.5673944769192482,
@@ -214,57 +217,57 @@
   },
   "2018": {
    "institutos": 9,
-   "P": 58.249,
+   "P": 58.306,
    "media_simples_pesquisas": 58.459,
    "H": 57.502,
    "R": 58.273,
-   "final": 58.066,
+   "final": 58.1,
    "urna": 55.13,
-   "erro_P": 3.119,
+   "erro_P": 3.176,
    "erro_media_simples": 3.329,
    "erro_H": 2.371,
    "erro_R": 3.143,
-   "erro_final": 2.936,
+   "erro_final": 2.97,
    "faixa_1_ponto_conteve": false
   },
   "2022": {
    "institutos": 13,
-   "P": 47.974,
+   "P": 47.967,
    "media_simples_pesquisas": 49.152,
    "H": 48.077,
    "R": 47.267,
-   "final": 47.893,
+   "final": 47.889,
    "urna": 49.098,
-   "erro_P": -1.124,
+   "erro_P": -1.131,
    "erro_media_simples": 0.055,
    "erro_H": -1.021,
    "erro_R": -1.831,
-   "erro_final": -1.204,
+   "erro_final": -1.208,
    "faixa_1_ponto_conteve": false
   }
  },
  "teste_do_passado_resumo": {
-  "erro_absoluto_medio_final": 1.7430032375344169,
-  "erro_absoluto_medio_P": 2.4954039997856987,
+  "erro_absoluto_medio_final": 1.7556645964248976,
+  "erro_absoluto_medio_P": 2.5165062646031706,
   "erro_absoluto_medio_media_simples": 2.209098455716043,
   "erro_absoluto_medio_H": 1.7895677595789887,
   "erro_absoluto_medio_R": 2.464108690822883,
   "faixa_1_ponto_conteve": 0
  },
  "adversarial": {
-  "erro_medio_P_horizonte": 1.7461095753904725,
+  "erro_medio_P_horizonte": 1.7626764650478417,
   "erros_P_horizonte": {
    "2014": 3.243,
-   "2018": 3.119,
-   "2022": -1.124
+   "2018": 3.176,
+   "2022": -1.131
   },
   "erro_1t_2026_medio_institutos": -1.8962522228688055
  },
  "sensibilidade": {
-  "min_flavio": 49.46873540092347,
-  "max_flavio": 51.11293022952944,
-  "variantes_com_flavio_acima_de_50": 17,
-  "variantes": 18
+  "min_flavio": 49.79113394485924,
+  "max_flavio": 51.87992148387328,
+  "variantes_com_flavio_acima_de_50": 18,
+  "variantes": 19
  },
  "urna_1t_2026": {
   "Lula": 45.1628,

@@ -17,38 +17,52 @@ import pandas as pd
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from previsao.comum import CAPTURAS, DERIV, registrar_arquivo  # noqa: E402
+from previsao.comum import BRUTOS, CAPTURAS, DERIV, registrar_arquivo, sha256  # noqa: E402
+
+BRUTO_HTML = BRUTOS / "html-pesquisas-2026"  # fora do git
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36"}
 
 
-def texto_de(url: str) -> tuple[str, Path | None]:
-    base = CAPTURAS / "pesquisas-2026" / hashlib.sha1(url.encode()).hexdigest()[:16]
-    ja = [p for p in (base.with_suffix(".pdf"), base.with_suffix(".html")) if p.exists() and p.stat().st_size > 2000]
-    if ja:  # captura ja feita: a pagina pode mudar ou recusar a segunda visita
-        dest, conteudo = ja[0], ja[0].read_bytes()
-    else:
-        try:
-            r = requests.get(url, headers=UA, timeout=40)
-        except requests.RequestException:
-            return "", None
-        if r.status_code != 200 or len(r.content) < 2000:
-            return "", None
-        pdf = url.lower().endswith(".pdf") or r.headers.get("content-type", "").startswith("application/pdf")
-        dest, conteudo = base.with_suffix(".pdf" if pdf else ".html"), r.content
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_bytes(conteudo)
-        registrar_arquivo(dest, url, "segunda fonte de pesquisa do 2o turno de 2026")
-    if dest.suffix == ".pdf":
-        try:
-            import pdfplumber
-            with pdfplumber.open(io.BytesIO(conteudo)) as pdf:
-                return " ".join((p.extract_text() or "") for p in pdf.pages), dest
-        except Exception:
-            return "", dest
+def _texto_html(conteudo: bytes) -> str:
     t = conteudo.decode("utf-8", errors="ignore")
     t = re.sub(r"<script.*?</script>|<style.*?</style>", " ", t, flags=re.S)
-    return html.unescape(re.sub(r"<[^>]+>", " ", t)), dest
+    return re.sub(r"[ 	]+", " ", html.unescape(re.sub(r"<[^>]+>", " ", t)))
+
+
+def texto_de(url: str) -> tuple[str, Path | None]:
+    """Baixa a pagina uma vez. O HTML bruto fica fora do git (traz scripts e chaves de terceiros, como a chave publica do Google
+    que o UOL poe nas paginas); no git fica so o texto extraido, que e o que a conferencia le."""
+    nome = hashlib.sha1(url.encode()).hexdigest()[:16]
+    txt = CAPTURAS / "pesquisas-2026" / f"{nome}.txt"
+    pdf = CAPTURAS / "pesquisas-2026" / f"{nome}.pdf"
+    bruto = BRUTO_HTML / f"{nome}.html"
+    if pdf.exists():
+        conteudo = pdf.read_bytes()
+        try:
+            import pdfplumber
+            with pdfplumber.open(io.BytesIO(conteudo)) as doc:
+                return " ".join((pg.extract_text() or "") for pg in doc.pages), pdf
+        except Exception:
+            return "", pdf
+    if txt.exists():
+        return txt.read_text(encoding="utf-8"), txt
+    try:
+        r = requests.get(url, headers=UA, timeout=40)
+    except requests.RequestException:
+        return "", None
+    if r.status_code != 200 or len(r.content) < 2000:
+        return "", None
+    txt.parent.mkdir(parents=True, exist_ok=True)
+    if url.lower().endswith(".pdf") or r.headers.get("content-type", "").startswith("application/pdf"):
+        pdf.write_bytes(r.content)
+        registrar_arquivo(pdf, url, "segunda fonte de pesquisa do 2o turno de 2026")
+        return texto_de(url)
+    BRUTO_HTML.mkdir(parents=True, exist_ok=True)
+    bruto.write_bytes(r.content)
+    txt.write_text(_texto_html(r.content), encoding="utf-8")
+    registrar_arquivo(txt, url, f"texto extraido; HTML bruto (fora do git) sha256 {sha256(bruto)}")
+    return txt.read_text(encoding="utf-8"), txt
 
 
 def formas(x: float) -> list[str]:

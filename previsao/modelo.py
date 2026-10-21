@@ -15,6 +15,7 @@ PESOS = {"P": 0.60, "H": 0.25, "R": 0.15}
 DIVISAO_OUTROS = 0.50          # parte dos outros candidatos que vai para cada finalista (parametro do autor)
 PESO_2T, PESO_1T = 2.0, 1.0    # nota de acerto: 2o turno pesa o dobro
 TETO_PESO = 0.25               # nenhum instituto passa de 25% do peso
+MIN_TURNOS = 2                 # emenda 2: com um turno so medido, a nota nao conta (instituto tratado como sem historico)
 JANELA_DIAS = (4, 13)          # em 2026: fim de campo de 12/out a 21/out, eleicao em 25/out (de 13 a 4 dias antes)
 DATAS = {(2014, 1): date(2014, 10, 5), (2014, 2): date(2014, 10, 26), (2018, 1): date(2018, 10, 7), (2018, 2): date(2018, 10, 28),
          (2022, 1): date(2022, 10, 2), (2022, 2): date(2022, 10, 30), (2026, 1): date(2026, 10, 4), (2026, 2): date(2026, 10, 25)}
@@ -110,13 +111,13 @@ def erros_institutos() -> pd.DataFrame:
     return pd.DataFrame(out)
 
 
-def notas(erros: pd.DataFrame, antes_de: int) -> pd.DataFrame:
+def notas(erros: pd.DataFrame, antes_de: int, min_turnos: int = MIN_TURNOS) -> pd.DataFrame:
     """Nota de acerto (media ponderada do erro absoluto) e vies no 2o turno, so com eleicoes anteriores a 'antes_de'.
 
     Para 2026 (antes_de = 2027) entram o 1o turno de 2026 e tudo antes; no teste do passado, so as eleicoes anteriores."""
     e = erros[erros.ano < antes_de].copy()
     if e.empty:
-        return pd.DataFrame(columns=["instituto", "nota", "vies_2t", "n_2t", "n_rodadas"])
+        return pd.DataFrame(columns=["instituto", "nota", "nota_medida", "vies_2t", "n_2t", "n_rodadas"])
     e["peso"] = np.where(e.turno == 2, PESO_2T, PESO_1T)
     e["abs"] = e.erro.abs()
     g = e.groupby("instituto")
@@ -126,6 +127,9 @@ def notas(erros: pd.DataFrame, antes_de: int) -> pd.DataFrame:
     out["n_2t"] = t2.size()
     out = out.fillna({"n_2t": 0}).reset_index()
     out["n_2t"] = out.n_2t.astype(int)
+    out["nota_medida"] = out.nota
+    # um acerto isolado pode ser sorte: abaixo de min_turnos, o instituto recebe a nota de quem nao tem historico (percentil 75)
+    out.loc[out.n_rodadas < min_turnos, "nota"] = np.nan
     return out
 
 
