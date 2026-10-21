@@ -89,4 +89,9 @@ Não ouve eleitor (não é pesquisa), não mede intenção de ninguém, não mod
 
 ## 12. Emendas
 
-(nenhuma até aqui)
+**Emenda 1 (21/out/2026, antes de calcular P, H e R; depois de ver as pesquisas uma a uma e as notas de acerto dos institutos):**
+
+- **Válido sempre pela conta dos totais** (Flávio ÷ (Flávio + Lula)), em vez do válido publicado. Motivo: os institutos arredondam de jeitos diferentes (a Veritá publica 51,07 com totais de 49,7 e 47,7, que dão 51,03); a conta uniforme muda cada pesquisa em no máximo 0,1 ponto e não depende de achar o válido em cada matéria. O válido publicado continua servindo para conferir a pesquisa (segunda fonte).
+- **Nomes:** Ibope e Ipec são o mesmo instituto; DataPoder360 e PoderData também; a Nexus é o braço de pesquisa da FSB (endereço `nexus.fsb.com.br`), então o histórico da FSB de 2022 conta para a Nexus; a Futura registra no TSE como 100% Cidades. Vox Brasil e Vox Populi são empresas diferentes e ficam separadas.
+- **Teste do passado:** a janela de 2026 (fim de campo de 13 a 4 dias antes da eleição) é a mesma usada em 2014, 2018 e 2022, para o teste comparar o mesmo momento.
+- **Declarado, sem mudar a regra:** um instituto com uma só eleição de histórico e erro pequeno recebe peso alto pela regra do §4.7 (é o caso da Vox Brasil e da Palver no 1º turno de 2026). A regra fica como foi escrita, com o teto de 25%; a variante com a nota encolhida pelo número de eleições vai para a sensibilidade.
